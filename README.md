@@ -1,0 +1,18 @@
+# Sheikh-artworks-site
+import React from "react"; import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"; import { Button } from "@/components/ui/button"; import { Card, CardContent } from "@/components/ui/card"; import { Input } from "@/components/ui/input"; import { Textarea } from "@/components/ui/textarea";
+
+const products = [ { name: "Personalised Frame", price: "₹499", image: "https://via.placeholder.com/200x150?text=Frame" }, { name: "Custom Mug", price: "₹299", image: "https://via.placeholder.com/200x150?text=Mug" }, { name: "Engraved Wallet", price: "₹699", image: "https://via.placeholder.com/200x150?text=Wallet" }, { name: "Name Pendant", price: "₹399", image: "https://via.placeholder.com/200x150?text=Pendant" }, { name: "Calligraphy Art", price: "₹349", image: "https://via.placeholder.com/200x150?text=Calligraphy" }, { name: "Digital Portrait", price: "₹599", image: "https://via.placeholder.com/200x150?text=Portrait" }, { name: "Acrylic Keychain", price: "₹199", image: "https://via.placeholder.com/200x150?text=Keychain" }, ];
+
+function Home() { return ( <div className="p-6 max-w-4xl mx-auto"> <h1 className="text-4xl font-bold mb-4 text-center">Sheikh Artworks</h1> <p className="text-lg text-center"> Welcome to Sheikh Artworks — your destination for beautifully crafted personalised items including mugs, frames, pendants, wallets, and digital art. </p> <div className="mt-6 text-center"> <Button asChild> <Link to="/products">View Products</Link> </Button> </div> </div> ); }
+
+function Products() { return ( <div className="p-6 max-w-4xl mx-auto"> <h2 className="text-3xl font-semibold mb-4 text-center">Our Products</h2> <div className="grid grid-cols-1 md:grid-cols-2 gap-4"> {products.map((item, index) => ( <Card key={index} className="rounded-2xl shadow-md"> <CardContent className="p-4"> <img src={item.image} alt={item.name} className="w-full h-40 object-cover rounded-xl mb-2" /> <h3 className="text-xl font-medium">{item.name}</h3> <p className="text-gray-600 mb-2">{item.price}</p> <Button asChild> <a
+href="https://wa.me/918492021518"
+target="_blank"
+rel="noopener noreferrer"
+> Book on WhatsApp </a> </Button> </CardContent> </Card> ))} </div> </div> ); }
+
+function Contact() { return ( <div className="p-6 max-w-xl mx-auto"> <h2 className="text-3xl font-semibold mb-4 text-center">Contact Us</h2> <form className="grid gap-4"> <Input placeholder="Your Name" required /> <Input placeholder="Your Email" type="email" required /> <Textarea placeholder="Your Message" required /> <Button type="submit">Send Message</Button> </form> <div className="mt-6 text-center"> <p>Or reach us via:</p> <div className="mt-2"> <a href="https://wa.me/918492021518" className="text-blue-600 underline mr-4">WhatsApp</a> <a href="https://instagram.com/Sheikh_artworks" className="text-pink-600 underline">Instagram</a> </div> </div> </div> ); }
+
+function Cart() { return ( <div className="p-6 max-w-2xl mx-auto text-center"> <h2 className="text-3xl font-semibold mb-4">Your Cart</h2> <p>Your booking will be processed via WhatsApp or Instagram. Please confirm products there.</p> <div className="mt-4"> <Button asChild> <a href="https://wa.me/918492021518" target="_blank">Go to WhatsApp</a> </Button> </div> </div> ); }
+
+export default function App() { return ( <Router> <nav className="bg-gray-100 p-4 shadow-md flex justify-center gap-6 text-lg"> <Link to="/">Home</Link> <Link to="/products">Products</Link> <Link to="/contact">Contact</Link> <Link to="/cart">Cart</Link> </nav> <Routes> <Route path="/" element={<Home />} /> <Route path="/products" element={<Products />} /> <Route path="/contact" element={<Contact />} /> <Route path="/cart" element={<Cart />} /> </Routes> </Router> ); }
